@@ -18,3 +18,5 @@ export function extractValidationLink(emailText: string): string | null {
 
     return link;
 }
+
+export const getRandomItem = (array: Array<any>) => array[Math.floor(Math.random() * array.length)];

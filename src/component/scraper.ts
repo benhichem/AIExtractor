@@ -30,7 +30,7 @@ export class CreateAiExtractionAccount {
         }
     };
 
-    cleanup() {
+    async cleanup() {
         if (this.browser !== null && this.page !== null) {
             this.browser.close();
             this.browser = null;
@@ -84,7 +84,7 @@ export class CreateAiExtractionAccount {
             console.log("NEW API KEY IS :: ", apikey);
             return apikey;
         } catch (error) {
-            console.log(error)
+            throw error;
         }
     }
 }

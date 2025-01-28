@@ -30,6 +30,7 @@
   "homepage": "https://github.com/{{param `github.owner`}}/{{param `github.repo`}}#readme",
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.12.0",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "eslint": "^9.8.0",
@@ -43,11 +44,15 @@
   },
   "dependencies": {
     "@cemalgnlts/mailjs": "^3.0.1",
+    "axios": "^1.7.9",
     "cheerio": "^1.0.0",
     "clipboardy": "^4.0.0",
     "pino": "^9.6.0",
     "puppeteer": "^24.1.0",
     "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20"
   }
 }
