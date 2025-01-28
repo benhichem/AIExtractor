@@ -2,6 +2,7 @@
   "name": "{{param `github.repo` | lowercase}}",
   "version": "1.0.0",
   "description": "{{param `description`}}",
+  "type": "module",
   "main": "dist/index.js",
   "engines": {
     "npm": ">=10.8.1",
@@ -39,5 +40,14 @@
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@cemalgnlts/mailjs": "^3.0.1",
+    "cheerio": "^1.0.0",
+    "clipboardy": "^4.0.0",
+    "pino": "^9.6.0",
+    "puppeteer": "^24.1.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
