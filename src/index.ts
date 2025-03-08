@@ -97,9 +97,6 @@ async function Run(accountCount: number) {
 
 const consoleArgs: number = eval(argv[2]);
 
-console.log(consoleArgs);
-
-
 
 
 Run(consoleArgs);
