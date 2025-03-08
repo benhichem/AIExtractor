@@ -75,18 +75,6 @@ async function Run(accountCount: number) {
 
     for (let index = 0; index < 10; index++) {
         if (proxies) {
-            /*       let proxy = getRandomItem(proxies);
-                  console.log(proxy.split(':'))
-                  let response = await axios.get('https://chat.deepseek.com/a/chat/s/7004770a-47ec-4205-9f83-62e315df4830', {
-                      proxy: {
-      
-                          host: proxy.split(':')[0],
-                          port: proxy.split(':')[1]
-                      }
-                  });
-                  console.log(response.data); */
-
-
             let apikey = await GenerateAccount();
             if (apikey) {
                 let accountRepo = dataSource.getRepository(Account);
