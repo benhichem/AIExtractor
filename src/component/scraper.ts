@@ -22,7 +22,8 @@ export class CreateAiExtractionAccount {
 
             puppeteerBrowser.use(stealthPlugin());
             this.browser = await puppeteerBrowser.launch({
-                headless: false
+                headless: false,
+                args: ['--proxy-server:http://']
             })
             this.page = await this.browser.newPage();
         } else {
@@ -77,12 +78,18 @@ export class CreateAiExtractionAccount {
             await newPage?.reload();
             console.log('navigating to the page for api')
             await newPage?.goto('https://app.extracta.ai/api', { timeout: 0, waitUntil: "networkidle2" });
-            await newPage?.click('[class*="sm:flex-none"] button');
-            await Sleep(10000);
-            await newPage?.click('table tbody tr td[class*="whitespace-nowrap"] button')
-            let apikey = clipboard.readSync();
-            console.log("NEW API KEY IS :: ", apikey);
-            return apikey;
+            return await newPage?.waitForSelector('[class*="sm:flex-none"] button')
+                .then(async () => {
+                    await newPage?.click('[class*="sm:flex-none"] button');
+                    await Sleep(10000);
+                    await newPage?.click('table tbody tr td[class*="whitespace-nowrap"] button')
+                    let apikey = clipboard.readSync();
+                    console.log("NEW API KEY IS :: ", apikey);
+                    return apikey;
+                }).catch((err) => {
+                    console.log(err)
+                })
+
         } catch (error) {
             throw error;
         }

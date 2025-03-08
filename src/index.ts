@@ -8,12 +8,14 @@ import { Account } from "./component/database/account-entity.js";
 import { ERROR } from "sqlite3";
 import { GenerateProxies } from "./component/proxies.js";
 import { argv } from "process";
+import axios from "axios";
 
 async function GenerateAccount() {
     try {
         // we create an account
         const mailAccount = new MailAcocount()
         await mailAccount.createAccount();
+
         await mailAccount.SignUpAccount();
         let accountDetails = mailAccount.AccountCreds
         console.log(accountDetails);
@@ -40,6 +42,7 @@ async function GenerateAccount() {
             if (verificationUrl !== null) {
                 await browser.VerifyAccount(verificationUrl)
                 let apikeys = await browser.CreateAPIkeys()
+                await browser.cleanup();
                 return {
                     apikey: apikeys,
                     username: accountDetails?.username,
@@ -70,9 +73,20 @@ async function Run(accountCount: number) {
         });
     const proxies = await GenerateProxies();
 
-    for (let index = 0; index < 2; index++) {
+    for (let index = 0; index < 10; index++) {
         if (proxies) {
-            let proxy = getRandomItem(proxies);
+            /*       let proxy = getRandomItem(proxies);
+                  console.log(proxy.split(':'))
+                  let response = await axios.get('https://chat.deepseek.com/a/chat/s/7004770a-47ec-4205-9f83-62e315df4830', {
+                      proxy: {
+      
+                          host: proxy.split(':')[0],
+                          port: proxy.split(':')[1]
+                      }
+                  });
+                  console.log(response.data); */
+
+
             let apikey = await GenerateAccount();
             if (apikey) {
                 let accountRepo = dataSource.getRepository(Account);

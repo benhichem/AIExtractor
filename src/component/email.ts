@@ -173,6 +173,7 @@ export default class MailAcocount implements MailAccount {
     async createAccount(): Promise<CreateOneAccount> {
         try {
             const result = await this.mailjs.createOneAccount();
+            console.log(result)
             this.Account = {
                 username: result.data.username,
                 password: result.data.password,
@@ -180,6 +181,7 @@ export default class MailAcocount implements MailAccount {
                 accountId: null
             };
 
+            console.log(this.Account)
             return {
                 username: result.data.username,
                 password: result.data.password
